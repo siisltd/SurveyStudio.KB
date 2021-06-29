@@ -99,6 +99,7 @@ extra_css:
 plugins:
   - markdownextradata: # используется для подстановки переменных в текст на этапе препроцессинга
       data: variables  # путь относительно корня к каталогу, где лежат yml или json файлы с переменными для подстановки 
+  - search
 
 markdown_extensions:
   - codehilite
