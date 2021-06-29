@@ -1,0 +1,150 @@
+{
+  "Magic": "SS2EQN",
+  "Version": "2.0",
+  "Name": "Цикл в цикле",
+  "Flags": "None",
+  "ScriptPreProcessing": "questions.repeat(2, 4, 1);\n\nQ1.getAll().forEach(function(a) {\n    if ((a.flags & AnswerFlags.DisableRepeat) == 0) {\n        var q2x = 200 + a.code;\n        var q3x = 300 + a.code;\n\n        questions.repeat(q3x, q3x, q2x);\n        setTemplates(q2x, q3x, a.code, 100);\n    }\n});\n\n// --------------------------------------------------------------------\nfunction setTemplates(qSourceN, qTargetN, mainAnswerCode, multiplier) {\n    questions[qSourceN].getAll().forEach(function(a) {\n        if ((a.flags & AnswerFlags.DisableRepeat) == 0) {\n            var q = questions[qTargetN * multiplier + a.code];\n            var tmp = q.outputColumnTemplate;\n\n            q.outputColumnTemplate = \n                getTemplate(q.type, tmp, mainAnswerCode, a.code);\n            q.outputColumnTemplateOVN = \n                getTemplate(q.type, tmp, mainAnswerCode, a.code, 'N');\n            q.outputColumnTemplateOVT = \n                getTemplate(q.type, tmp, mainAnswerCode, a.code, 'T');\n        }\n    });\n}\n\nfunction getTemplate(qType, tmp, code1, code2, oV) {\n    tmp += '.' + code1 + '.' + code2;\n\n    switch (qType) {\n        case QuestionTypeIds.SingleChoice:\n            tmp += oV === undefined ? '' : '_{1}' + oV;\n            break;\n            \n        case QuestionTypeIds.MultipleChoice:\n            tmp += oV === undefined ? '_{1}' : '_{1}' + oV;\n            break;\n\n        case QuestionTypeIds.Table_Text:\n        case QuestionTypeIds.Table_Numeric:\n            tmp += oV === undefined ? '_{2}' : '_{2}' + oV;\n            break;\n            \n        case QuestionTypeIds.Table_SingleChoice:\n            tmp += oV === undefined ? '_{2}' : '_{2}_{1}' + oV;\n            break;\n\n        case QuestionTypeIds.Table_MultipleChoice:\n            tmp += oV === undefined ? '_{2}_{1}' : '_{2}_{1}' + oV;\n    }\n    \n    return tmp;\n}",
+  "ScriptBeforeShow": "var qN = Q.number / 100 | 0;\nvar code = Q.number % 100;\n\nif (qN == 2 || qN == 4) {\n    var a = Q1[code];\n\n    V['Ответ из Q1'] = a.flags & AnswerFlags.OpenValueTxt ? a.openValueTxt : a.text;\n}\n\nif ((qN / 100 | 0) == 3) {\n    var a = questions[200 + qN % 100][code];\n\n    V['Ответ из Q2'] = a.flags & AnswerFlags.OpenValueTxt ? a.openValueTxt : a.text;\n}",
+  "Questions": [
+    {
+      "OrderIdx": 1,
+      "Number": 1,
+      "Text": "<p>Вопрос 1<br></p>",
+      "ImagePlacement": "Default",
+      "QuestionType": "MultipleChoice",
+      "Flags": "None",
+      "AnswerList": "Q1 список",
+      "OutputColumnTemplate": "B1_{1}",
+      "OutputColumnTemplateOVT": "B1_{1}T",
+      "OutputColumnTemplateOVN": "B1_{1}N",
+      "ScriptBeforeShow": "informationTextClear();\nquestions.getAll().forEach(function (q) {\n    informationTextAdd(\"Q{0}: {1}\", q.number, q.condition);\n});",
+      "ScriptAfterAnswer": "informationTextClear();"
+    },
+    {
+      "OrderIdx": 2,
+      "Number": 2,
+      "Text": "<p>Что относится к <b>{Ответ из Q1}</b>?<br></p>",
+      "ImagePlacement": "Default",
+      "QuestionType": "MultipleChoice",
+      "Flags": "None",
+      "AnswerList": "Q2 список",
+      "OutputColumnTemplate": "B2.{3}_{1}",
+      "OutputColumnTemplateOVT": "B2.{3}_{1}T"
+    },
+    {
+      "OrderIdx": 3,
+      "Number": 3,
+      "Text": "<p>Вот это <b>{Ответ из Q1}</b>, а это <b>{Ответ из Q2}</b><br></p>",
+      "ImagePlacement": "Default",
+      "QuestionType": "MultipleChoice",
+      "Flags": "None",
+      "AnswerList": "Q1 список",
+      "OutputColumnTemplate": "B3"
+    },
+    {
+      "OrderIdx": 4,
+      "Number": 4,
+      "Text": "<p>Это последний вопрос основного цикла, и здесь есть <b>{Ответ из Q1}</b><br></p>",
+      "ImagePlacement": "Default",
+      "QuestionType": "Information",
+      "Flags": "None",
+      "OutputColumnTemplate": "B4"
+    }
+  ],
+  "AnswerLists": [
+    {
+      "Name": "Q1 список",
+      "AnswerItems": [
+        {
+          "OrderIdx": 1,
+          "Code": 1,
+          "Text": "Ответ 1",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 2,
+          "Code": 2,
+          "Text": "Ответ 2",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 3,
+          "Code": 3,
+          "Text": "Ответ 3",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 4,
+          "Code": 4,
+          "Text": "Ответ 4",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 5,
+          "Code": 98,
+          "Text": "Другой",
+          "ImagePlacement": "Default",
+          "Flags": "OpenValueTxt"
+        },
+        {
+          "OrderIdx": 6,
+          "Code": 99,
+          "Text": "Затрудняюсь ответить<br>",
+          "ImagePlacement": "Default",
+          "Flags": "Blocking, DisableRepeat"
+        }
+      ]
+    },
+    {
+      "Name": "Q2 список",
+      "AnswerItems": [
+        {
+          "OrderIdx": 1,
+          "Code": 1,
+          "Text": "Характеристика 1",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 2,
+          "Code": 2,
+          "Text": "Характеристика 2",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 3,
+          "Code": 3,
+          "Text": "Характеристика 3",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 4,
+          "Code": 4,
+          "Text": "Характеристика 4",
+          "ImagePlacement": "Default",
+          "Flags": "None"
+        },
+        {
+          "OrderIdx": 5,
+          "Code": 98,
+          "Text": "Другая",
+          "ImagePlacement": "Default",
+          "Flags": "OpenValueTxt"
+        },
+        {
+          "OrderIdx": 6,
+          "Code": 99,
+          "Text": "Затрудняюсь ответить",
+          "ImagePlacement": "Default",
+          "Flags": "Blocking, DisableRepeat"
+        }
+      ]
+    }
+  ]
+}

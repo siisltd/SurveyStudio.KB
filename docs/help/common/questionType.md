@@ -1,0 +1,9 @@
+- *Information* - информация,
+- *Text* - текстовый,
+- *Numeric* - числовой,
+- *SingleChoice* - единственный выбор,
+- *MultipleChoice* - множественный выбор,
+- *Table_Text* - таблица: текст,
+- *Table_Numeric* - таблица: числа,
+- *Table_SingleChoice* - таблица: единственный выбор,
+- *Table_MultipleChoice* - таблица: множественный выбор.
