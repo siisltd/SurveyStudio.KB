@@ -87,6 +87,11 @@ theme:
   palette:
     primary: 'red'
     accent: 'red'
+  features:
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
 
 extra_css:
  - 'stylesheets/extra.css'
