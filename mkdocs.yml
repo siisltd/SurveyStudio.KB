@@ -2,7 +2,7 @@ site_name: База знаний
 site_url: https://kb.survey-studio.com
 site_description: База знаний SurveyStudio
 site_author: SIIS Ltd
-copyright: <a href="https://siisltd.ru/">© SIIS Ltd 2010</a> | <a href="mailto:support@siisltd.ru">support@siisltd.ru</a>
+copyright: <a href="https://siisltd.ru/">© SIIS Ltd 2021</a> | <a href="mailto:support@siisltd.ru">support@siisltd.ru</a>
 
 nav:
   - 'Начало': 'index.md'
@@ -94,7 +94,6 @@ extra_css:
 plugins:
   - markdownextradata: # используется для подстановки переменных в текст на этапе препроцессинга
       data: variables  # путь относительно корня к каталогу, где лежат yml или json файлы с переменными для подстановки 
-  - search
 
 markdown_extensions:
   - codehilite
@@ -102,8 +101,5 @@ markdown_extensions:
       base_path: docs
   - attr_list
 
-
 extra:
-  search:
-    language: 'en, ru'
   disqus: 
