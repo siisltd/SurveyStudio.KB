@@ -75,23 +75,6 @@ nav:
     - 'Нюансы использования проверки на неравенство в выражениях': 'articles/1000.md'
   - 'Вопросы и ответы': 'faq.md'
   - 'Видео': 'video.md'
-  - '← В личный кабинет': 'https://survey-studio.com/client'
-
-theme:
-  name: 'material'
-  language: 'ru'
-  favicon: 'images/favicon.ico'
-  font:
-    text: 'Segoe UI'
-    code: 'Menlo'
-  palette:
-    primary: 'red'
-    accent: 'red'
-  features:
-    - navigation.sections
-    - navigation.expand
-    - search.suggest
-    - search.highlight
 
 extra_css:
  - 'stylesheets/extra.css'
@@ -99,7 +82,10 @@ extra_css:
 plugins:
   - markdownextradata: # используется для подстановки переменных в текст на этапе препроцессинга
       data: variables  # путь относительно корня к каталогу, где лежат yml или json файлы с переменными для подстановки 
-  - search
+  - search:
+      lang: [ru, en]
+      separator: '[\s\-\.]+'
+      prebuild_index: true
 
 markdown_extensions:
   - codehilite
@@ -108,4 +94,4 @@ markdown_extensions:
   - attr_list
 
 extra:
-  disqus: 
+  disqus: kbss
