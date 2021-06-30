@@ -76,6 +76,38 @@ nav:
   - 'Вопросы и ответы': 'faq.md'
   - 'Видео': 'video.md'
 
+theme:
+  name: 'readthedocs'
+  language: 'ru'
+  favicon: 'images/favicon.ico'
+  font:
+    text: 'Segoe UI'
+    code: 'Menlo'
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Светлая тема
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Темная тема
+
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
 extra_css:
  - 'stylesheets/extra.css'
   
