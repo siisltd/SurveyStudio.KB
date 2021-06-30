@@ -1,5 +1,305 @@
-На этом сайте собрана полезная информация о **SURVEY**STUDIO.
+<!-- Custom HTML site displayed as the Home chapter -->
 
-Слева находится меню разделов. `Описание системы` - самый большой раздел, он содержит необходимую информацию для ознакомления и начала работы. Его полезно почитать, чтобы знать, где, что находится и что вообще в системе есть. В разделе `Статьи` собраны материалы, проясняющие сложные моменты, как что-то сделать. В `Вопросах и ответах` можно найти ответы на вопросы, которые возникают у наших клиентов чаще всего.
+{% extends "main.html" %}
+{% block tabs %}
+{{ super() }}
+<style>
 
-Если хочется посмотреть, а не почитать, или хотите какого-то обучения - заходите в раздел `Видео`. **SURVEY**STUDIO постоянно развивается, поэтому видеозаписи уже устарели и подходят для общего ознакомления с сервисом. Актуальную информацию можно найти здесь, в базе знаний. О новых функциях сообщаем в разделе `Обновления`, а также [в нашей группе Facebook](https://www.facebook.com/siisltd.ru/).
+    .top-hr p {
+       font-size: 0.8rem; 
+    }
+
+    .md-main {
+        flex-grow: 0
+    }
+
+    .md-main__inner {
+        display: flex;
+        height: 100%;
+    }
+
+    .tx-container {
+        padding-top: .0rem;
+        background: url(https://survey-studio.com/images/ss2020_background.jpg) center;
+        background-size: cover;
+    }
+
+    .tx-hero {
+        color: var(--md-primary-bg-color);
+        justify-content: center;
+    }
+
+    .tx-hero h1 {
+        margin-bottom: 1rem;
+        color: currentColor;
+        font-weight: 700
+    }
+
+    .tx-hero__content {
+        margin: 0 auto;
+    }
+
+    .tx-hero__image{
+        width:17rem;
+        height:17rem;
+        order:1;
+        padding-right: 2.5rem;
+    }
+
+    .tx-hero .md-button {
+        margin-top: .5rem;
+        margin-right: .5rem;
+        color: var(--md-primary-bg-color)
+    }
+
+    .tx-hero .md-button--primary {
+        background-color: var(--md-primary-bg-color);
+        color: hsla(280deg, 37%, 48%, 1);
+        border-color: var(--md-primary-bg-color)
+    }
+
+    .tx-hero .md-button:focus,
+    .tx-hero .md-button:hover {
+        background-color: var(--md-accent-fg-color);
+        color: var(--md-default-bg-color);
+        border-color: var(--md-accent-fg-color)
+    }
+
+    .feature-item h2 svg {
+        height: 30px;
+        float: left;
+        margin-right: 10px;
+        transform: translateY(10%);
+    }
+
+    .top-hr {
+        margin-top: 42px;
+    }
+
+    .feature-item {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        box-sizing: border-box;
+        padding: 0 15px;
+        word-break: break-word
+    }
+
+    .feature-item h2 {
+        color: #333;
+        font-weight: 300;
+        font-size: 25px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: normal;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: inherit;
+    }
+
+    .feature-item p {
+        font-size: 16px;
+        line-height: 1.8em;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        color: #111;
+        margin: 0 0 10px;
+        display: block;
+    }
+
+    @media screen and (max-width:30em) {
+        .tx-hero h1 {
+            font-size: 1.4rem
+        }
+    }
+
+    @media screen and (min-width:60em) {
+        .md-sidebar--secondary {
+            display: none
+        }
+
+        .tx-hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tx-hero__content {
+            max-width: 42rem;
+            margin-left: 1.0rem;
+            margin-right: 4.0rem;
+            align-items: center;
+        }
+    }
+
+    @media screen and (min-width:76.25em) {
+        .md-sidebar--primary {
+            display: none
+        }
+
+        .top-hr {
+            width: 100%;
+            display: flex;
+            max-width: 61rem;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 0 .2rem;
+        }
+
+        .bottom-hr {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            max-width: 61rem;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 0 .2rem;
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .feature-item:hover {
+            background-color: #526cfe47;
+            border-radius: 3px;
+        }
+    }
+
+    .hr {
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .text-center {
+        text-align: center;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 15px;
+        font-family: 'Lato', sans-serif;
+        font-size: 23px;
+        font-weight: 300;
+        padding-bottom: 10px;
+    }
+
+    .logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
+        margin: 0 auto;
+    }
+
+    .logos img {
+        flex: 1 1 auto;
+        padding: 25px;
+        max-height: 130px;
+        vertical-align: middle;
+    }
+
+    .hr-logos {
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+
+    .md-footer{
+       position: absolute;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       height: 84; 
+    }
+
+    .md-footer-meta__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1.0rem;
+    }
+
+    .md-footer-social {
+        padding-top: 20px;
+    }
+</style>
+
+
+
+<!-- Main site Entry button descriptions -->
+<section class="tx-container">
+    <div class="md-grid md-typeset">
+      <div class="tx-hero">
+        <div class="tx-hero__image">
+        </div>
+        <div class="tx-hero__content">
+
+          <img src="https://survey-studio.com/images/ss2_logo_white.svg" draggable="false">
+          <h1 style="margin-top: 2rem;">Сервис для профессиональных исследователей </h1>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- Main site box descriptions -->
+<div class="top-hr">
+
+    <div class="hr">
+        <p>На этом сайте собрана полезная информация о SURVEYSTUDIO.</p>
+
+
+        <p>
+            Наверху находится меню разделов. 
+            Описание системы - самый большой раздел, он содержит необходимую информацию для ознакомления и начала работы. 
+            Его полезно почитать, чтобы знать, где, что находится и что вообще в системе есть. 
+            В разделе Статьи собраны материалы, проясняющие сложные моменты, как что-то сделать. 
+            В Вопросах и ответах можно найти ответы на вопросы, которые возникают у наших клиентов чаще всего.
+    
+        </p>
+        <p>
+            Если хочется посмотреть, а не почитать, или хотите какого-то обучения - заходите в раздел Видео. 
+            SURVEYSTUDIO постоянно развивается, поэтому видеозаписи уже устарели и подходят для общего ознакомления с сервисом. 
+            Актуальную информацию можно найти здесь, в базе знаний. О новых функциях сообщаем в разделе Обновления, а также в нашей группе Facebook.
+        </p>
+    </div>
+   
+</div>
+
+
+
+<!-- Custom narrow footer -->
+<div class="md-footer-meta__inner md-grid">
+
+</div>
+
+{% endblock %}
+{% block content %}{% endblock %}
+
+<!-- More minimal footer -->
+{% block footer %}
+<footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <!-- Copyright and theme information -->
+            <div class="md-footer-copyright">
+                {% if config.copyright %}
+                <div class="md-footer-copyright__highlight">
+                    {{ config.copyright }}
+                </div>
+                {% endif %}
+                powered by
+                <a href="https://www.mkdocs.org" title="MkDocs">MkDocs</a>
+                and
+                <a href="https://squidfunk.github.io/mkdocs-material/"
+                   title="Material for MkDocs">
+                    Material for MkDocs</a>
+            </div>
+            {% block social %}
+            {% include "partials/social.html" %}
+            {% endblock %}
+        </div>
+    </div>
+</footer>
+{% endblock %}

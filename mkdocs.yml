@@ -77,30 +77,19 @@ nav:
   - 'Видео': 'video.md'
 
 theme:
-  name: 'readthedocs'
+  name: 'material'
   language: 'ru'
   favicon: 'images/favicon.ico'
   font:
     text: 'Segoe UI'
     code: 'Menlo'
   palette:
-    - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: red
       accent: red
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Светлая тема
-
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: red
-      accent: red
-      toggle:
-        icon: material/toggle-switch
-        name: Темная тема
-
+  custom_dir: docs/overrides
   features:
+    - content.tabs.link
     - navigation.tracking
     - navigation.tabs
     - navigation.top
@@ -113,7 +102,11 @@ extra_css:
   
 plugins:
   - markdownextradata: # используется для подстановки переменных в текст на этапе препроцессинга
-      data: variables  # путь относительно корня к каталогу, где лежат yml или json файлы с переменными для подстановки 
+      data: variables  # путь относительно корня к каталогу, где лежат yml или json файлы с переменными для подстановки
+  - search:
+      lang: [ru, en]
+      separator: '[\s\-\.]+'
+      prebuild_index: true
 
 
 markdown_extensions:
@@ -121,6 +114,8 @@ markdown_extensions:
   - markdown_include.include:
       base_path: docs
   - attr_list
+  - toc:
+      permalink: true
 
 extra:
   disqus: kbss

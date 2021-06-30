@@ -2,19 +2,19 @@
 button[data-md-color-primary=red],
 [data-md-color-primary=red] .md-header,
 [data-md-color-primary=red] .md-hero {
-	background-color: #c23926;
+	background-color: #a52a2a;
 }
 
 [data-md-color-primary=red] .md-typeset a,
 [data-md-color-primary=red] .md-nav__link--active,
 [data-md-color-primary=red] .md-nav__link:active {
-	color: #c23926;
+	color: #a52a2a;
 }
 
 @media only screen and (max-width:76.1875em) {
 	html [data-md-color-primary=red] .md-nav--primary .md-nav__title--site,
     [data-md-color-primary=red] .md-tabs {
-		background-color: #c23926;
+		background-color: #a52a2a;
 	}
 }
 
@@ -32,10 +32,10 @@ article ul li ul {
 }
 
 [data-md-color-scheme="slate"] {
-	--md-primary-fg-color:        #c23926;
+	--md-primary-fg-color:        #a52a2a;
 }
   
 [data-md-color-scheme="default"] {
-	--md-primary-fg-color:        #c23926;
+	--md-primary-fg-color:        #a52a2a;
 }
   
