@@ -76,26 +76,7 @@ nav:
   - 'Вопросы и ответы': 'faq.md'
   - 'Видео': 'video.md'
 
-theme:
-  name: 'material'
-  language: 'ru'
-  favicon: 'images/favicon.ico'
-  font:
-    text: 'Segoe UI'
-    code: 'Menlo'
-  palette:
-      scheme: default
-      primary: red
-      accent: red
-  custom_dir: docs/overrides
-  features:
-    - content.tabs.link
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.top
-    - toc.integrate
-    - search.suggest
-    - search.highlight
+
 
 extra_css:
  - 'stylesheets/extra.css'
@@ -103,10 +84,10 @@ extra_css:
 plugins:
   - markdownextradata: # используется для подстановки переменных в текст на этапе препроцессинга
       data: variables  # путь относительно корня к каталогу, где лежат yml или json файлы с переменными для подстановки
-  - search:
-      lang: [ru, en]
-      separator: '[\s\-\.]+'
-      prebuild_index: true
+#  - search:
+#      lang: [ru, en]
+#      separator: '[\s\-\.]+'
+#      prebuild_index: true
 
 
 markdown_extensions:
