@@ -1,37 +1,32 @@
 <!-- Elements added to main will be displayed on all pages -->
-{% extends "base.html" %}
+{% extends "base.html" %} {% block config %} {{ super() }}
 
-{% block config %}
-  {{ super() }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="/assets/javascripts/lunr/min/lunr.multi.min.js"></script>
-  <script src="/assets/javascripts/lunr/min/lunr.stemmer.support.min.js"></script>
-  <script src="/assets/javascripts/lunr/min/lunr.ru.min.js"></script>
+<script src="/assets/javascripts/lunr/min/lunr.min.js"></script>
+<script src="/assets/javascripts/lunr/min/lunr.multi.min.js"></script>
+<script src="/assets/javascripts/lunr/min/lunr.stemmer.support.min.js"></script>
+<script src="/assets/javascripts/lunr/min/lunr.ru.min.js"></script>
 
-  <script>
-    var __search = {
-      transform: function(query) {
-          var result = query
-            .split(/"([^"]+)"/g)    
-                .map((terms, index) => index & 1
-                ? terms.replace(/^\b|^(?![^\x00-\x7F]|$)|\s+/g, " +")
-                : terms
-                )
-                .join("")
-            .replace(/"|(?:^|\s+)[*+\-:^~]+(?=\s+|$)/g, "") 
-            .trim();
-
-        result = result.split(" ").map((word, index) => {
+<script>
+  var __search = {
+    transform: function (query) {
+      return query
+        .split(/"([^"]+)"/g)
+        .map((terms, index) =>
+          index & 1
+            ? terms.replace(/^\b|^(?![^\x00-\x7F]|$)|\s+/g, " +")
+            : terms
+        )
+        .join("")
+        .replace(/"|(?:^|\s+)[*+\-:^~]+(?=\s+|$)/g, "")
+        .trim()
+        .split(" ")
+        .map((word, index) => {
           var addPlus = word.startsWith("+");
-          console.log(word);
-          let stemmed = lunr.ru.stemmer(word);
-          return addPlus
-            ? "+" + stemmed
-            : stemmed;
-        }).join(" ");
-
-        return result;
-      }
-    }
-  </script>
+          var stemmed = lunr.ru.stemmer(word);
+          return addPlus ? "+" + stemmed : stemmed;
+        })
+        .join(" ");
+    },
+  };
+</script>
 {% endblock %}
